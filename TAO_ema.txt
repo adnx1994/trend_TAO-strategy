@@ -1,0 +1,39 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+
+//@version=5
+indicator("TAO_ema",overlay=false)
+
+
+ema8=ta.ema(close,8)
+ema21=ta.ema(close,21)
+ema34=ta.ema(close,34)
+ema55=ta.ema(close,55)
+ema89=ta.ema(close,89)
+
+
+
+
+vv=color.green
+nerkh=5
+ww=5
+if(ema8> ema21  and   ema21> ema34 and   ema34> ema55     and   ema55> ema89   )
+    vv:=color.green
+    nerkh:=5
+    ww:=5
+else if(ema8< ema21  and   ema21< ema34 and   ema34< ema55     and   ema55< ema89   )
+    vv:=color.red
+    nerkh:=-5
+    ww:=-5
+    
+else 
+    vv:=color.gray
+    nerkh:=0
+    ww:=0
+    
+plot(nerkh,title="potential",color=vv,style=plot.style_histogram)
+plot(ww,title="potential_line",color=color.new(color.blue,transp=0),style=plot.style_line,linewidth=3)
+plot(0,title="zero_line",color=color.new(color.black,transp=0),style=plot.style_line,linewidth=1)
+
+
+
+
